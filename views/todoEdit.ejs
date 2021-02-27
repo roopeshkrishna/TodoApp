@@ -1,0 +1,46 @@
+<%- include("./partial/header") %>
+
+
+<nav class="navbar navbar navbar-dark bg-primary">
+
+    <a class="navbar-brand" href="#">TodoApp</a>
+
+</nav>
+<div class="container mt-5" >
+    <form action="" method="POST" class="d-flex" >
+    
+
+        <input type="text" name="content" class="text form-control">
+        
+        <input type="submit" value="submit" class="btn btn-md btn-primary mx-2">
+    </form>
+    <ul class="list-group mt-5">
+        <% todo.forEach(todos =>{ %>
+            <% if (todos._id == idTask) { %>
+
+                
+            <li class="list-group-item">
+                <form action="/edit/todo/<%= todos._id %>" method="POST">
+                    <input type="text" value="<%= todos.todo %>" name="content">
+                    <input type="submit" value="submit" class="btn btn-md btn-success mx-2">
+                    <a href="/" class="btn btn-md btn-secondary mx-2">Cancel</a>
+                </form>    
+        </li> 
+        <% } else { %>
+            <li class="list-group-item">
+                <div ><%= todos.todo %>
+
+                </div>
+                <a href="/edit/todo/<%= todos._id %>" class="btn btn-danger btn-sm">Edit</a>
+                <a href="/delete/todo/<%= todos._id %>" class="btn btn-danger btn-sm ">delete</a>
+
+            </li>   
+            <% } %>
+            <% }) %>
+    </ul>
+
+
+
+
+
+<%- include("./partial/footer") %>
